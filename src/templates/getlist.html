@@ -1,0 +1,15 @@
+<h1>This is get List</h1><br>
+
+
+{% for i in db1 %}
+{% for images in dbAddImages %}
+            <h1>{{i.product_name_mod }}</h1>
+<h1>____________________________________________________________</h1>
+{% for images1 in images %}<br>
+<img src="{{ images1 }}"style="width:304px;height:228px;">
+{% endfor %}
+
+{% endfor %}
+{% endfor %}
+
+

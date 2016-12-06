@@ -1,0 +1,51 @@
+
+
+   '''
+   #Products import
+    new_product = shopify.Product()
+    new_product.title = product_name_lst
+    new_product.product_type = category_name_lst
+    new_product.vendor = "ChinaAPI"
+    new_product.body_html = overview_lst
+    new_product.save()
+
+    # main image
+    new_product.id = new_product.id
+    new_image = shopify.Image()
+    new_image = shopify.Image(dict(product_id=new_product.id))
+    new_image.src = main_picture_lst
+    new_image.save()
+
+    #additinola images
+    for i in additional_images_lst:
+        new_product.id = new_product.id
+        new_image = shopify.Image()
+        new_image = shopify.Image(dict(product_id=new_product.id))
+        new_image.src = i
+        new_image.save()
+
+
+
+    #Price
+    product = shopify.Product.find(new_product.id)
+    product.variants[0].price = product_price
+
+    product.save()
+    '''
+
+
+#new_image = shopify.Image(dict(product_id=shopify_product_id.id))
+'''
+new_image = shopify.Image(dict(product_id=new_product.id))
+    new_image.src = "http://www.9pho.com/wp-content/uploads/2015/09/Kate-Upton-Photos.jpg"
+    new_image.save()
+
+
+
+"""
+#example of JSON
+def hello(request):
+    abc = chinaApi()
+    abc1 = abc.Category_loops()
+    return render(request,"base.html",{"h1":abc1})
+"""
