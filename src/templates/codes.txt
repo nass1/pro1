@@ -2,7 +2,7 @@
 
    '''
    #Products import
-    new_product = shopify.Product()
+    new_product = shopify.Product() #assing varianle to products function
     new_product.title = product_name_lst
     new_product.product_type = category_name_lst
     new_product.vendor = "ChinaAPI"

@@ -6,41 +6,106 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
+  <script>
+  tinymce.init({
+    selector: '#mytextarea',
+    theme: 'modern',
+  height: 500,
+  width: 500,
+  plugins: 'code',
 
+  toolbar: ['newdocument, bold, italic, underline, strikethrough, alignleft, aligncenter, alignright, alignjustify, formatselect, code',
+    'fontselect fontsizeselect cut copy paste bullist numlist outdent indent blockquote',
+    'undo redo removeformat subscript superscript',
+    ]
 
-    
+  });
+  </script>
+
 </head>
 
 <body>
 
-
+{{error}}
 
 <br>
 <div class="row">
     <div class="col-md-1"> </div>
     <div class="col-md-10">
     <form method="GET" action="{% url 'chinavAPI:getprod' %}">
-          First name:<br>
+          Search Products:<br>
           <input type="text" name="Search" value="{{product_id}}">
           <br>
 
           <input type="submit" value="Submit">
+
            </form>
 
-<br>
-<h1>{{ code }}</h1>
-<h1>{{ product_url_lst }}</h1>
-<h1>{{ product_name_lst }}</h1>
-        <h1>{{ error }}</h1>
+<h3>+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++<h3/>
+<form method="GET" action="{% url 'chinavAPI:postToShopify' %}" >
+  <div class="form-group">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Details</a></li>
+        <li><a data-toggle="tab" href="#menu1">Description</a></li>
+        <li><a data-toggle="tab" href="#menu2">Images</a></li>
+        <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+          <h3>Product Name</h3>
+          <label for="usr">Id:</label>
+            <input type="text" class="form-control" id="usr" value="{{product_id_lst}}">
+          <label for="usr">Name:</label>
+            <input type="text" class="form-control" id="ProductName" value="{{product_name_lst}}">
+          <label for="usr">Price(Change Price Here):</label>
+            <input type="text" class="form-control" id="usr" value="{{product_price}}">
+          <label for="usr">Product Link:</label>
+            <h4><a href="{{ product_url_lst }}" target="_blank">Take Me to Product On ChinaVasion</a></h4>
+
+        </div>
+        <div id="menu1" class="tab-pane fade">
+          <h3>Details</h3>
+          <label for="comment">Comment:</label>
+             <textarea class="form-control" rows="5" id="mytextarea">{{overview_lst}}</textarea>
+
+
+        </div>
+
+        <div id="menu2" class="tab-pane fade">
+          <h3>Images</h3>
+                <label class="checkbox-inline">
+                 <input type="checkbox" value="" checked><img src="{{ main_picture_lst }}" class="img-thumbnail" width="304" height="236">
+                </label>
+
+            {% for i in additional_images_lst %}
+                <label class="checkbox-inline">
+                 <input type="checkbox" value="" checked><img src="{{ i }}" class="img-thumbnail" width="304" height="236">
+                </label>
+          {% endfor %}
+
+        </div>
+        <div id="menu3" class="tab-pane fade">
+          <h3>Menu 3</h3>
+          <p>To be edit</p>
+        </div>
+      </div>
+    </div>
+<button type="submit" class="btn btn-default">Submit</button>
+</form>
+<h3>+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</h3>
+
+
+
+
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </div>
-
-
 
 
 
